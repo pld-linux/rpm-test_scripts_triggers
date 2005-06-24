@@ -56,6 +56,12 @@ testowanie skryptów i wyzwalaczy rpm'a - drugi podpakiet obsoletuj±cy
 %install
 rm -rf $RPM_BUILD_ROOT
 
+echo nothing interesting here > config.conf
+
+install -D config.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/config.conf
+install -D config.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}-first/config.conf
+install -D config.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}-second/config.conf
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -65,6 +71,7 @@ echo '#MAIN PACKAGE#' pre: \$1: ${1}, \$2: $2
 
 %post
 echo '#MAIN PACKAGE#' post: \$1: ${1}, \$2: $2
+echo 'config changed' | tee -a %{_sysconfdir}/%{name}/config.conf
 
 %preun
 echo '#MAIN PACKAGE#' preun: \$1: ${1}, \$2: $2
@@ -78,6 +85,7 @@ echo '#FIRST SUBPACKAGE#' pre: \$1: ${1}, \$2: $2
 
 %post first
 echo '#FIRST SUBPACKAGE#' post: \$1: ${1}, \$2: $2
+echo 'config changed' | tee -a %{_sysconfdir}/%{name}-first/config.conf
 
 %preun first
 echo '#FIRST SUBPACKAGE#' preun: \$1: ${1}, \$2: $2
@@ -91,6 +99,7 @@ echo '#SECOND SUBPACKAGE#' pre: \$1: ${1}, \$2: $2
 
 %post second
 echo '#SECOND SUBPACKAGE#' post: \$1: ${1}, \$2: $2
+echo 'config changed' | tee -a %{_sysconfdir}/%{name}-second/config.conf
 
 %preun second
 echo '#SECOND SUBPACKAGE#' preun: \$1: ${1}, \$2: $2
@@ -133,11 +142,14 @@ echo '#SECOND SUBPACKAGE#' triggerpostun: \$1: ${1}, \$2: $2
 %files
 %defattr(644,root,root,755)
 %doc README
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/config.conf
 
 %files first
 %defattr(644,root,root,755)
 %doc README
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}-first/config.conf
 
 %files second
 %defattr(644,root,root,755)
 %doc README
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}-second/config.conf
