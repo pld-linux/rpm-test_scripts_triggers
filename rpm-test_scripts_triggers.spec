@@ -1,57 +1,55 @@
 #
 %define	_ver	%{!?ver:1}%{?ver:%ver}
 #
-Summary:	testing of rpm's scripts and triggers
-Summary(pl):	testowanie skryptów i wyzwalaczy rpm'a
+Summary:	Testing of rpm's scripts and triggers
+Summary(pl):	Testowanie skryptów i wyzwalaczy rpm-a
 Name:		rpm-test_scripts_triggers
 Version:	%{_ver}
 Release:	0.1
 Epoch:		0
 License:	GPL
 Group:		Development/Tools
-Source0:	http://twittner.host.sk/files/%{name}/%{name}.tar.gz
+Source0:	http://twittner.host.sk/files/rpm-test_scripts_triggers/%{name}.tar.gz
 # Source0-md5:	961d3479998c046fe2512e111bdd5b9b
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-testing of rpm's scripts and triggers.
+Testing of rpm's scripts and triggers.
 
 %description -l pl
-testowanie skryptów i wyzwalaczy rpm'a.
+Testowanie skryptów i wyzwalaczy rpm-a.
 
 %package first
-Summary:	testing of rpm's scripts and triggers - first subpackage
-Summary(pl):	testowanie skryptów i wyzwalaczy rpm'a - pierwszy podpakiet
+Summary:	Testing of rpm's scripts and triggers - first subpackage
+Summary(pl):	Testowanie skryptów i wyzwalaczy rpm-a - pierwszy podpakiet
 Group:		Development/Tools
 Obsoletes:	%{name}-second
 
 %description first
-testing of rpm's scripts and triggers - first subpackage which
+Testing of rpm's scripts and triggers - first subpackage which
 obsoletes %{name}-second.
 
 %description first -l pl
-testowanie skryptów i wyzwalaczy rpm'a - pierwszy podpakiet obsoletuj±cy
+Testowanie skryptów i wyzwalaczy rpm-a - pierwszy podpakiet obsoletuj±cy
 %{name}-second.
 
 %package second
-Summary:	testing of rpm's scripts and triggers - second subpackage
-Summary(pl):	testowanie skryptów i wyzwalaczy rpm'a - drugi podpakiet
+Summary:	Testing of rpm's scripts and triggers - second subpackage
+Summary(pl):	Testowanie skryptów i wyzwalaczy rpm-a - drugi podpakiet
 Group:		Development/Tools
 Obsoletes:	%{name}-first
 
 %description second
-testing of rpm's scripts and triggers - second subpackage which
+Testing of rpm's scripts and triggers - second subpackage which
 obsoletes %{name}-first.
 
 %description second -l pl
-testowanie skryptów i wyzwalaczy rpm'a - drugi podpakiet obsoletuj±cy
+Testowanie skryptów i wyzwalaczy rpm-a - drugi podpakiet obsoletuj±cy
 %{name}-first.
 
 %prep
 %setup -q -n %{name}
-
-%build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -142,14 +140,14 @@ echo '#SECOND SUBPACKAGE#' triggerpostun: \$1: ${1}, \$2: $2
 %files
 %defattr(644,root,root,755)
 %doc README
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/config.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/config.conf
 
 %files first
 %defattr(644,root,root,755)
 %doc README
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}-first/config.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}-first/config.conf
 
 %files second
 %defattr(644,root,root,755)
 %doc README
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}-second/config.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}-second/config.conf
