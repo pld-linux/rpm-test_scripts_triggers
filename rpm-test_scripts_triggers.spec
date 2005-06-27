@@ -14,6 +14,10 @@ Source0:	http://twittner.host.sk/files/rpm-test_scripts_triggers/%{name}.tar.gz
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define	_nvr	%{name}-%{version}-%{release}
+%define	_nfvr	%{name}-first-%{version}-%{release}
+%define	_nsvr	%{name}-second-%{version}-%{release}
+
 %description
 Testing of rpm's scripts and triggers.
 
@@ -65,75 +69,75 @@ rm -rf $RPM_BUILD_ROOT
 
 ###########################################################
 %pre
-echo '#MAIN PACKAGE#' pre: \$1: ${1}, \$2: $2
+echo %{_nvr} pre: \$1: ${1}, \$2: $2
 
 %post
-echo '#MAIN PACKAGE#' post: \$1: ${1}, \$2: $2
+echo  %{_nvr} post: \$1: ${1}, \$2: $2
 echo 'config changed' | tee -a %{_sysconfdir}/%{name}/config.conf
 
 %preun
-echo '#MAIN PACKAGE#' preun: \$1: ${1}, \$2: $2
+echo %{_nvr} preun: \$1: ${1}, \$2: $2
 
 %postun
-echo '#MAIN PACKAGE#' postun: \$1: ${1}, \$2: $2
+echo %{_nvr} postun: \$1: ${1}, \$2: $2
 
 ###########################################################
 %pre first
-echo '#FIRST SUBPACKAGE#' pre: \$1: ${1}, \$2: $2
+echo %{_nfvr} pre: \$1: ${1}, \$2: $2
 
 %post first
-echo '#FIRST SUBPACKAGE#' post: \$1: ${1}, \$2: $2
+echo %{_nfvr} post: \$1: ${1}, \$2: $2
 echo 'config changed' | tee -a %{_sysconfdir}/%{name}-first/config.conf
 
 %preun first
-echo '#FIRST SUBPACKAGE#' preun: \$1: ${1}, \$2: $2
+echo %{_nfvr} preun: \$1: ${1}, \$2: $2
 
 %postun first
-echo '#FIRST SUBPACKAGE#' postun: \$1: ${1}, \$2: $2
+echo %{_nfvr} postun: \$1: ${1}, \$2: $2
 
 ###########################################################
 %pre second
-echo '#SECOND SUBPACKAGE#' pre: \$1: ${1}, \$2: $2
+echo %{_nsvr} pre: \$1: ${1}, \$2: $2
 
 %post second
-echo '#SECOND SUBPACKAGE#' post: \$1: ${1}, \$2: $2
+echo %{_nsvr} post: \$1: ${1}, \$2: $2
 echo 'config changed' | tee -a %{_sysconfdir}/%{name}-second/config.conf
 
 %preun second
-echo '#SECOND SUBPACKAGE#' preun: \$1: ${1}, \$2: $2
+echo %{_nsvr} preun: \$1: ${1}, \$2: $2
 
 %postun second
-echo '#SECOND SUBPACKAGE#' postun: \$1: ${1}, \$2: $2
+echo %{_nsvr} postun: \$1: ${1}, \$2: $2
 
 ###########################################################
-%triggerin -- %{name}
-echo '#MAIN PACKAGE#' triggerin: \$1: ${1}, \$2: $2
+%triggerin -- %{name} < %{version}-%{release}
+echo %{_nvr} triggerin: \$1: ${1}, \$2: $2
 
-%triggerun -- %{name}
-echo '#MAIN PACKAGE#' triggerun: \$1: ${1}, \$2: $2
+%triggerun -- %{name} < %{version}-%{release}
+echo %{_nvr} triggerun: \$1: ${1}, \$2: $2
 
-%triggerpostun -- %{name}
-echo '#MAIN PACKAGE#' triggerpostun: \$1: ${1}, \$2: $2
+%triggerpostun -- %{name} < %{version}-%{release}
+echo %{_nvr} triggerpostun: \$1: ${1}, \$2: $2
 
 ###########################################################
 %triggerin first -- %{name}-second
-echo '#FIRST SUBPACKAGE#' triggerin: \$1: ${1}, \$2: $2
+echo %{_nfvr} triggerin: \$1: ${1}, \$2: $2
 
 %triggerun first -- %{name}-second
-echo '#FIRST SUBPACKAGE#' triggerun: \$1: ${1}, \$2: $2
+echo %{_nfvr} triggerun: \$1: ${1}, \$2: $2
 
 %triggerpostun first -- %{name}-second
-echo '#FIRST SUBPACKAGE#' triggerpostun: \$1: ${1}, \$2: $2
+echo %{_nfvr} triggerpostun: \$1: ${1}, \$2: $2
 
 ###########################################################
 %triggerin second -- %{name}-first
-echo '#SECOND SUBPACKAGE#' triggerin: \$1: ${1}, \$2: $2
+echo %{_nsvr} triggerin: \$1: ${1}, \$2: $2
 
 %triggerun second -- %{name}-first
-echo '#SECOND SUBPACKAGE#' triggerun: \$1: ${1}, \$2: $2
+echo %{_nsvr} triggerun: \$1: ${1}, \$2: $2
 
 %triggerpostun second -- %{name}-first
-echo '#SECOND SUBPACKAGE#' triggerpostun: \$1: ${1}, \$2: $2
+echo %{_nsvr} triggerpostun: \$1: ${1}, \$2: $2
 
 ###########################################################
 
