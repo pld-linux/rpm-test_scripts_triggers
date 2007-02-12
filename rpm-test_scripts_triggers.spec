@@ -2,7 +2,7 @@
 %define	_ver	%{!?ver:1}%{?ver:%ver}
 #
 Summary:	Testing of rpm's scripts and triggers
-Summary(pl.UTF-8):   Testowanie skryptów i wyzwalaczy rpm-a
+Summary(pl.UTF-8):	Testowanie skryptów i wyzwalaczy rpm-a
 Name:		rpm-test_scripts_triggers
 Version:	%{_ver}
 Release:	0.1
@@ -26,7 +26,7 @@ Testowanie skryptów i wyzwalaczy rpm-a.
 
 %package first
 Summary:	Testing of rpm's scripts and triggers - first subpackage
-Summary(pl.UTF-8):   Testowanie skryptów i wyzwalaczy rpm-a - pierwszy podpakiet
+Summary(pl.UTF-8):	Testowanie skryptów i wyzwalaczy rpm-a - pierwszy podpakiet
 Group:		Development/Tools
 Obsoletes:	%{name}-second
 
@@ -40,7 +40,7 @@ Testowanie skryptów i wyzwalaczy rpm-a - pierwszy podpakiet obsoletujący
 
 %package second
 Summary:	Testing of rpm's scripts and triggers - second subpackage
-Summary(pl.UTF-8):   Testowanie skryptów i wyzwalaczy rpm-a - drugi podpakiet
+Summary(pl.UTF-8):	Testowanie skryptów i wyzwalaczy rpm-a - drugi podpakiet
 Group:		Development/Tools
 Obsoletes:	%{name}-first
 
