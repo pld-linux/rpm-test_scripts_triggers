@@ -2,7 +2,7 @@
 %define	_ver	%{!?ver:1}%{?ver:%ver}
 #
 Summary:	Testing of rpm's scripts and triggers
-Summary(pl):	Testowanie skrypt體 i wyzwalaczy rpm-a
+Summary(pl.UTF-8):   Testowanie skrypt贸w i wyzwalaczy rpm-a
 Name:		rpm-test_scripts_triggers
 Version:	%{_ver}
 Release:	0.1
@@ -21,12 +21,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Testing of rpm's scripts and triggers.
 
-%description -l pl
-Testowanie skrypt體 i wyzwalaczy rpm-a.
+%description -l pl.UTF-8
+Testowanie skrypt贸w i wyzwalaczy rpm-a.
 
 %package first
 Summary:	Testing of rpm's scripts and triggers - first subpackage
-Summary(pl):	Testowanie skrypt體 i wyzwalaczy rpm-a - pierwszy podpakiet
+Summary(pl.UTF-8):   Testowanie skrypt贸w i wyzwalaczy rpm-a - pierwszy podpakiet
 Group:		Development/Tools
 Obsoletes:	%{name}-second
 
@@ -34,13 +34,13 @@ Obsoletes:	%{name}-second
 Testing of rpm's scripts and triggers - first subpackage which
 obsoletes %{name}-second.
 
-%description first -l pl
-Testowanie skrypt體 i wyzwalaczy rpm-a - pierwszy podpakiet obsoletuj眂y
+%description first -l pl.UTF-8
+Testowanie skrypt贸w i wyzwalaczy rpm-a - pierwszy podpakiet obsoletuj膮cy
 %{name}-second.
 
 %package second
 Summary:	Testing of rpm's scripts and triggers - second subpackage
-Summary(pl):	Testowanie skrypt體 i wyzwalaczy rpm-a - drugi podpakiet
+Summary(pl.UTF-8):   Testowanie skrypt贸w i wyzwalaczy rpm-a - drugi podpakiet
 Group:		Development/Tools
 Obsoletes:	%{name}-first
 
@@ -48,8 +48,8 @@ Obsoletes:	%{name}-first
 Testing of rpm's scripts and triggers - second subpackage which
 obsoletes %{name}-first.
 
-%description second -l pl
-Testowanie skrypt體 i wyzwalaczy rpm-a - drugi podpakiet obsoletuj眂y
+%description second -l pl.UTF-8
+Testowanie skrypt贸w i wyzwalaczy rpm-a - drugi podpakiet obsoletuj膮cy
 %{name}-first.
 
 %prep
